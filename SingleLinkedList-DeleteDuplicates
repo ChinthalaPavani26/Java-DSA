@@ -1,0 +1,102 @@
+import java.util.*;
+class Node
+{
+    int data;
+    Node next;
+
+    Node(int x)
+    {
+        data = x;
+        next = null;
+    }
+}
+class SLL
+{
+    //Node n = new Node(x);
+    Node head,tail;
+    void create(int x)
+    {
+       Node n = new Node(x);
+       if(head == null)
+       {
+         head = tail = n;
+       }
+       else
+       {
+        tail.next = n;
+        tail = n;
+       }
+    }
+    void display()
+    {
+        Node temp = head;
+        System.out.println("Linked list before removal of duplicates");
+        while(temp != null)
+        {
+            System.out.print(temp.data+" ");
+            temp = temp.next;
+        }
+        System.out.println();
+        System.out.println("Linked list after removal of duplicates");
+        temp = head;
+        while(temp != null)
+        {   
+            Node temp2 = temp;
+            while(temp2.next  != null)
+            {
+                if(temp2.next.data == temp.data)
+                {
+                    temp2.next = temp2.next.next;
+                }
+                else
+                {
+                    temp2 = temp2.next;
+
+                }
+            }
+            temp = temp.next;
+
+         }
+         temp = head;
+         while(temp != null)
+         {
+            System.out.print(temp.data+" ");
+            temp = temp.next;
+         }
+
+    }
+}
+class TestClass {
+    public static void main(String args[] ) throws Exception {
+        /* Sample code to perform I/O:
+         * Use either of these methods for input
+
+        //BufferedReader
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String name = br.readLine();                // Reading input from STDIN
+        System.out.println("Hi, " + name + ".");    // Writing output to STDOUT
+
+        //Scanner
+        Scanner s = new Scanner(System.in);
+        String name = s.nextLine();                 // Reading input from STDIN
+        System.out.println("Hi, " + name + ".");    // Writing output to STDOUT
+
+        */
+
+        // Write your code here
+        Scanner sc = new Scanner(System.in);
+        SLL obj = new SLL();
+        for(;;)
+        {
+            
+            int x = sc.nextInt();
+            if(x == -1)
+                break;
+            obj.create(x);
+
+        }
+        obj.display();
+
+
+    }
+}
