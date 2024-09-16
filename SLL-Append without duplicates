@@ -1,0 +1,91 @@
+import java.util.Scanner;
+class Node
+{
+    int data;
+    Node next;
+     
+     Node(int x)
+     {
+        data = x;
+        next = null;
+     }
+}
+
+class SLL
+{
+    Node head,tail;
+    SLL()
+    {
+        head = tail = null;
+    }
+    void create(int x)
+    {
+        if(isDuplicate(x))
+        {
+            return;
+        }
+        Node n = new Node(x);
+        if(head == null)
+        {
+            head = tail = n;
+        }
+        else
+        {
+            Node temp = head;
+            int count =1;
+            
+            tail.next=n;
+           
+            tail = n;
+        }
+    }
+    boolean isDuplicate(int x)
+    {
+        Node temp = head;
+        while(temp != null)
+        {
+            if(temp.data == x)
+            {
+                return true;
+            }
+            temp = temp.next;
+        }
+        return false;
+
+    }
+
+
+
+    void display()
+    {
+        Node temp = head;
+        while(temp != null)
+        {
+            System.out.print(temp.data+" ");
+            temp = temp.next;
+        }
+    }
+        
+
+}
+
+
+
+class TestClass {
+    public static void main(String args[] ) throws Exception {
+        // Write your code here
+         Scanner sc = new Scanner(System.in);
+        SLL obj = new SLL();
+        for(;;)
+        {
+        int x  = sc.nextInt();
+        if(x == -1)
+        {
+            break;
+        }
+        obj.create(x);
+        }
+        obj.display();
+
+    }
+}
