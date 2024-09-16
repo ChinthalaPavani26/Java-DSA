@@ -1,0 +1,98 @@
+
+QUEUE USING THE ARRAYS
+
+
+import java.util.Scanner;
+class MyQueue
+{
+	int a[];
+	int size;
+	int front,rear;
+	MyQueue(int n)
+	{
+	   front = -1;
+	   rear = -1;
+	   size = n;
+	   a = new int[n];
+	}
+	void enQueue(int x)
+	{
+	 	if(rear == size-1)
+		{
+			System.out.println("Queue is full");
+			return;
+		}
+	        rear = rear+1;
+		a[rear] = x;
+		
+		
+	}
+	void deQueue()
+	{
+	 if(front == rear)
+	 {
+		System.out.println("Queue is Underflow");
+		return;
+	}
+	front++;
+	System.out.println(a[front]+"is deleted ");
+        }
+
+	void display()
+	{
+		if(front == rear)
+		{
+		System.out.println("Queue is empty");
+		return;
+		}
+		for(int i = front+1;i <= rear ; i++)
+		{
+			System.out.print(a[i]+" ");
+		}
+	}
+}
+class QueueTest
+{
+public static void main(String args[])
+{
+Scanner sc = new Scanner(System.in);
+System.out.println("Enter the size of Queue");
+int n = sc.nextInt();
+MyQueue s = new MyQueue(n);
+for(;;)
+{
+	System.out.println();
+	System.out.println("1.Enqueue\n2.Dequeue\n3.Display\n4.EXIT");
+	System.out.println("Enter your choice");
+	int ch = sc.nextInt();
+	if(ch == 1)
+	{
+		System.out.println("Enter an Element");
+		int x =sc.nextInt();
+		s.enQueue(x);
+	}
+	else if(ch == 2)
+	{
+		s.deQueue();
+	}
+	else if(ch == 3)
+	{
+		s.display();
+	}
+	else if(ch == 4)
+	{
+		break;
+	}
+	else
+	{
+		System.out.println("Invalid choice");
+        }
+}
+}
+}
+
+	
+	
+
+	
+		
