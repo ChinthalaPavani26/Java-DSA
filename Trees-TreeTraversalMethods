@@ -1,0 +1,142 @@
+TREE TRAVERSAL METHODS
+
+import java.util.*;
+class Node
+{
+	int data;
+	Node left,right;
+	Node(int x)
+	{
+		data = x;
+		left = right = null;
+        }
+
+
+
+
+
+void insert(Node root,int x)
+{
+	Queue<Node> que = new LinkedList<>();
+	que.add(root);
+	while(!que.isEmpty())
+	{
+		Node temp  = que.poll();
+		if(temp.left == null)
+		{
+			temp.left = new Node(x);
+			break;
+		}
+		else
+		que.add(temp.left);
+			if(temp.right == null)
+			{
+				temp.right = new Node(x);
+				break;
+			}
+			else
+                          que.add(temp.right);
+		
+	}
+}
+
+
+
+
+
+void inOrder(Node root)
+{
+	if(root != null)
+	{
+		inOrder(root.left);
+		System.out.print(root.data+" ");
+		inOrder(root.right);
+	}
+}
+
+void preOrder(Node root)
+{
+	if(root != null)
+	{
+		
+		System.out.print(root.data+" ");
+		preOrder(root.left);
+
+		preOrder(root.right);
+		
+	}
+}
+void postOrder(Node root)
+{
+	if(root != null)
+	{
+		
+		//System.out.print(root.data+" ");
+		postOrder(root.left);
+
+		postOrder(root.right);
+		System.out.print(root.data+" ");
+		
+	}
+}
+void Levelorder(Node root)
+{
+	Queue<Node> que = new LinkedList<>();
+	que.add(root);
+	if(root != null)
+	{
+		
+	
+       }
+
+
+
+
+
+}
+class TreeTraversalMethod
+{
+public static void main(String args[])
+{
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter root node");
+		int x = sc.nextInt();
+		Node root = new Node(x);
+		while(true)
+		{
+			System.out.println();
+
+			System.out.println("1.Insert\n2.InOrder\n3.PreOrder\n4.PostOrder\n5.Exit");
+			System.out.println("Enter your choice");
+			int ch = sc.nextInt();
+			if(ch == 1)
+			{
+				System.out.print("Enter element");
+				x = sc.nextInt();
+				root.insert(root,x);
+			}
+			else if(ch == 2)
+			{
+				root.inOrder(root);
+			}
+			else if(ch == 3)
+			 {
+				root.preOrder(root);
+			 }
+
+			else if(ch == 4)
+				{
+					root.postOrder(root);		
+				}
+              		else if(ch == 5)
+			{
+				break;
+			}
+			else
+				
+				System.out.println("Invalid Choice");
+             }
+}
+}
+
