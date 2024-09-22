@@ -1,0 +1,70 @@
+import java.util.*;
+class Node
+{
+    int data;
+    Node left,right;
+    Node(int x)
+    {
+        data = x;
+        left = null;
+        right = null;
+    }
+    void insert(Node root,int x)
+    {
+        Queue<Node> que = new LinkedList<>();
+        que.add(root);
+        while(!que.isEmpty())
+        {   
+            Node temp = que.poll();
+            if(temp.left == null)
+            {
+                    temp.left = new Node(x);
+                    break;
+            }
+            else
+            que.add(temp.left);
+                    if(temp.right == null)
+                    {
+                        temp.right =new Node(x);
+                        break;
+                    }
+                    else
+                    que.add(temp.right);
+                    
+        }
+     }
+     int printTree(Node root)
+     {
+
+        if(root == null)
+        {
+            return 0;
+        }
+        return printTree(root.left) + root.data +printTree(root.right);
+
+     }
+    
+
+    public static void main(String args[] ) throws Exception 
+    {
+        // Write your code here
+         Scanner sc = new Scanner(System.in);
+
+        int x = sc.nextInt();
+        if(x == -1)
+        return;
+        Node root = new Node(x);
+        while(true)
+        {
+            x = sc.nextInt();
+            //root.insert(root,x);
+            if(x == -1)
+            break;
+            root.insert(root,x);
+        }
+        int res = root.printTree(root);
+        System.out.println(res);
+
+
+    }
+}
