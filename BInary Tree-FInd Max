@@ -1,0 +1,74 @@
+import java.util.*;
+class Node
+{
+    int data;
+    Node left,right;
+    Node(int x)
+    {
+        data = x;
+        left = null;
+        right = null;
+    }
+    void insert(Node root,int x)
+    {
+        Queue<Node> que = new LinkedList<>();
+        que.add(root);
+        while(!que.isEmpty())
+        {   
+            Node temp = que.poll();
+            if(temp.left == null)
+            {
+                    temp.left = new Node(x);
+                    break;
+            }
+                    else
+                    que.add(temp.left);
+                    if(temp.right == null)
+                    {
+                        temp.right =new Node(x);
+                        break;
+                    }
+                    else
+                    que.add(temp.right);
+                    
+                    }
+                    }
+    void printTree(Node root)
+    {
+        int maxElement = findMax(root);
+        System.out.println(maxElement);
+
+    }
+    int findMax(Node root)
+    {
+        if(root == null)
+        {
+            return Integer.MIN_VALUE;
+        }
+        int leftMax = findMax(root.left);
+        int rightMax = findMax(root.right);
+        return Math.max(root.data,Math.max(leftMax,rightMax));
+    }
+
+
+
+
+
+    public static void main(String args[] ) throws Exception 
+    {
+        // Write your code here
+        Scanner sc = new Scanner(System.in);
+
+        int x = sc.nextInt();
+        Node root = new Node(x);
+        while(true)
+        {
+            x = sc.nextInt();
+            root.insert(root,x);
+            if(x == -1)
+            break;
+        }
+        root.printTree(root);
+
+    }
+}
